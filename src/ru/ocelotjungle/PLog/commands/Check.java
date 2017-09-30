@@ -1,4 +1,4 @@
-package ru.ocelotjungle.commands;
+package ru.ocelotjungle.PLog.commands;
 
 import java.util.LinkedHashSet;
 
