@@ -5,9 +5,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import commands.Check;
-import commands.Page;
-import commands.Who;
+import ru.ocelotjungle.commands.Check;
+import ru.ocelotjungle.commands.Page;
+import ru.ocelotjungle.commands.Who;
 
 public class CommandExecutor implements org.bukkit.command.CommandExecutor {
 
