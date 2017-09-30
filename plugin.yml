@@ -1,0 +1,9 @@
+name: PLog
+main: ru.ocelotjungle.PLog.PLog
+version: 1
+description: Logging player position
+commands:
+  plog:
+    description: main command
+    usage: /plog <who|check|page>
+    permission: plog.use
