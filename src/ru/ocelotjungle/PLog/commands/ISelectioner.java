@@ -16,7 +16,7 @@ public interface ISelectioner {
 	
 	Statement statement = PLog.statement;
 	
-	public static LinkedHashSet<Record> getPlayerList(Block playerLoc, String[] args) {
+	public static LinkedHashSet<Record> getRecordList(Block playerLoc, String[] args) {
 		LinkedHashSet<Record> result = new LinkedHashSet<>();
 		try {
 			HashSet<Integer> excludedPlayers = args.length >= 4 ? parsePlayers(args[3]) : new HashSet<>();

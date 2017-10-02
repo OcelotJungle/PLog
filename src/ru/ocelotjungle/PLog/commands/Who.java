@@ -16,7 +16,7 @@ public class Who extends Thread {
 	
 	private Player player;
 	private String[] args;
-	private Statement statement = PLog.statement;
+	private Statement statement;
 	
 	public Who(Player player, String[] args) {
 		this.player = player;
@@ -25,8 +25,9 @@ public class Who extends Thread {
 
 	@Override
 	public void run() {
+		statement = PLog.statement;
 		player.sendMessage(ChatColor.GRAY + "Searching started, please wait...");
-		LinkedHashSet<Record> records = ISelectioner.getPlayerList(player.getLocation().getBlock(), args);
+		LinkedHashSet<Record> records = ISelectioner.getRecordList(player.getLocation().getBlock(), args);
 		HashSet<String> loggedPlayers = new HashSet<String>();
 		try {
 			ResultSet resultSet;

@@ -20,7 +20,7 @@ public class Page extends Thread {
 	private static HashMap<String, Record[]> selection = new HashMap<>();
 	private static Date date = new Date();
 	
-	private Statement statement = PLog.statement;
+	private Statement statement;
 	
 	public Page(Player player, String[] args) {
 		this.player = player;
@@ -29,10 +29,11 @@ public class Page extends Thread {
 
 	@Override
 	public void run() {
+		statement = PLog.statement;
 		Record[] lines = selection.get(player.getName());
 		int page = Integer.parseInt(args[1]);
 		if (page >= 1 && lines.length >= (page - 1) * 10) {
-			player.sendMessage(ChatColor.GOLD + "Page " + page + "/" + (lines.length / 10 + 1));
+			player.sendMessage(ChatColor.GOLD + "Page " + page + "/" + (int)Math.ceil((float)lines.length / 10.0f));
 			int limit = Math.min(lines.length, page * 10 - 1);
 			for (int i = (page - 1) * 10; i < limit; i++) {
 				String playerName = "";
@@ -44,7 +45,7 @@ public class Page extends Thread {
 				catch (SQLException me) { me.printStackTrace(); }
 				date.setTime(lines[i].time * 1000);
 				player.sendMessage(String.format(
-						" -- " + ChatColor.AQUA + "%s, %s: %d %d %d",
+						" -- " + ChatColor.AQUA + "%s %s: %d %d %d",
 						new SimpleDateFormat("dd.MM.YY HH:mm:ss").format(date), playerName, lines[i].x, lines[i].y, lines[i].z));
 			}
 			player.sendMessage(ChatColor.GRAY + " - Use /plog page <page>");

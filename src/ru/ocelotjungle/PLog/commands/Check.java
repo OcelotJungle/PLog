@@ -20,9 +20,16 @@ public class Check extends Thread {
 	@Override
 	public void run() {
 		player.sendMessage(ChatColor.GRAY + "Searching started, please wait...");
-		LinkedHashSet<Record> records = ISelectioner.getPlayerList(player.getLocation().getBlock(), args);
+		LinkedHashSet<Record> records = ISelectioner.getRecordList(player.getLocation().getBlock(), args);
 		Record[] recordArray = new Record[records.size()];
-		Page.setSelection(player, records.toArray(recordArray));
-		new Page(player, new String[]{"page", "1"}).start();
+		recordArray = records.toArray(recordArray);
+		Record temp;
+		for (int i = 0; i < Math.floorDiv(recordArray.length, 2); i++) {
+			temp = recordArray[i];
+			recordArray[i] = recordArray[recordArray.length - i - 1];
+			recordArray[recordArray.length - i - 1] = temp;
+		}
+		Page.setSelection(player, recordArray);
+		new Page(player, new String[]{null, "1"}).start();
 	}
 }

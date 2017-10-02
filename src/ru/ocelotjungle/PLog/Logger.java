@@ -11,13 +11,14 @@ import org.bukkit.entity.Player;
 
 public class Logger extends Thread {
 	
-	private Statement statement = PLog.statement;
+	private Statement statement;
 	private HashMap<String, Record> lastRecords = new HashMap<>();
 	
 	@Override
 	public void run() {
 		Date date;
 		while(true) {
+			statement = PLog.statement;
 			Block location;
 			int wid, pid;
 			date = new Date();
